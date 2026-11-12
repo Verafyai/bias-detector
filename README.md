@@ -83,22 +83,6 @@ A useful side effect: because the mock's judgments are noise, the jury correctly
 
 The MCP server exposes the harness to Claude Code, Cursor, Codex, Gemini CLI and anything else that speaks MCP.
 
-From a clone, after `npm install && npm run build`:
-
-```json
-{
-  "mcpServers": {
-    "verafy-bias": {
-      "command": "node",
-      "args": ["/path/to/bias-detector/dist/mcp.js"],
-      "env": { "OPENROUTER_API_KEY": "..." }
-    }
-  }
-}
-```
-
-Once `@verafy/bias` is on npm, with nothing to clone or build:
-
 ```json
 {
   "mcpServers": {
