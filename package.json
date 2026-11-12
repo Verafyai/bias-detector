@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "bin": {
-    "bias": "dist/cli.js"
+    "bias": "dist/cli.js",
+    "verafy-bias-mcp": "dist/mcp.js"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
