@@ -1,0 +1,27 @@
+/* Bias Detector home hero: keep Lady Justice's head and the scales in frame. */
+.bias-hero .product-hero-backdrop__art img {
+  object-position: 15% 10%;
+}
+
+/* On wide screens the art sits to the right of the copy, so the scales are not behind the text panel. */
+@media (min-width: 1024px) {
+  .bias-hero .product-hero-backdrop__art {
+    left: 50%;
+  }
+}
+
+/* Center the copy block between the top of the band and the stat cards. */
+.bias-hero.product-hero--band {
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.bias-hero .product-hero__content {
+  padding-bottom: 28px;
+}
+
+/* No simulated banner above the hero any more, so the art starts under the header. */
+.bias-hero.product-hero--band .product-hero-backdrop {
+  top: 0;
+}

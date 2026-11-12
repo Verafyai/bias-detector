@@ -1,0 +1,13 @@
+{
+  "openai": "/logos/openai.svg",
+  "anthropic": "/logos/anthropic.svg",
+  "google": "/logos/google.svg",
+  "deepseek": "/logos/deepseek.png",
+  "mistral": "/logos/mistral.png",
+  "meta": "/logos/meta.png",
+  "qwen": "/logos/qwen.png",
+  "moonshot": "/logos/moonshot.png",
+  "cohere": "/logos/cohere.png",
+  "microsoft": "/logos/microsoft.svg",
+  "perplexity": "/logos/perplexity.svg"
+}

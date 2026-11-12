@@ -1,0 +1,237 @@
+/*
+ * Rex St John product design tokens. Canonical copy: see ROLLOUT.md.
+ * Two themes. Every product picks one on <html data-theme="...">:
+ *   verafy   dark + teal: www.verafy.ai, Perspective, Bias Detector, Swarm Explorer, Verafy Inspector
+ *   lineage  light + warm: Lineage (memoir.rexstjohn.com / kin)
+ * rexstjohn.com and Savor.love use the shared scale (type, space, radius, header)
+ * and set their own 6 color tokens in a [data-theme] block of the same shape.
+ *
+ * Rule: components use var(--…) only. No raw hex outside this file.
+ */
+
+:root {
+  /* ---- Type: 16px floor. Nothing renders smaller than --fs-0 except
+     [data-allow-small-text] legal fine print (14px). ---- */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --fs-fine: 0.875rem;  /* 14px, legal/footer only, needs data-allow-small-text */
+  --fs-0: 1rem;         /* 16px body, buttons, labels, chips, nav */
+  --fs-1: 1.125rem;     /* 18px lead paragraph, card title */
+  --fs-2: 1.25rem;      /* 20px h3 */
+  --fs-3: 1.5rem;       /* 24px h2 mobile */
+  --fs-4: 2rem;         /* 32px h2 desktop */
+  --fs-5: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem); /* h1: 36px @375 -> 56px @1440 */
+  --lh-tight: 1.15;
+  --lh-body: 1.55;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;      /* max weight. No 800/900. */
+  --measure: 68ch;     /* max line length for prose */
+
+  /* ---- Space: 4px grid. Use only these. ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --section-y: clamp(48px, 6vw, 96px);
+  --gutter: clamp(16px, 4vw, 32px);
+  --content-max: 1120px;
+
+  /* ---- Radius ---- */
+  --r-sm: 6px;     /* inputs, small controls */
+  --r-md: 10px;    /* buttons, cards */
+  --r-lg: 14px;    /* modals, hero panels */
+  --r-pill: 999px; /* badge, chips */
+
+  /* ---- Lines, motion, layers ---- */
+  --border-w: 1px;
+  --focus-w: 2px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 160ms;
+  --z-header: 50;
+  --z-modal: 100;
+
+  /* ---- Header (same in every product) ---- */
+  --header-h: 64px;
+  --header-h-mobile: 56px;
+  --logo-h: 24px;        /* wordmark cap height on desktop */
+  --logo-h-mobile: 20px;
+  --tap: 44px;           /* min tap target */
+}
+
+/* ===================== Verafy (dark, teal) ===================== */
+[data-theme="verafy"] {
+  color-scheme: dark;
+  --bg: #0b0e12; /* page fill. Same as the header and Forecast. Button ink stays --on-accent-fill. */
+  --surface: #0e141b;
+  --surface-2: #0a0f15;
+  --border: #232c36;
+  --border-soft: #1d2630;
+  --text: #ffffff;
+  --text-2: #dfe5eb;     /* body */
+  --text-3: #b8c2cc;     /* secondary */
+  --text-4: #9aa6b2;     /* meta. Lowest allowed for text (AA on --bg) */
+  --accent: #5fe0c8;     /* links, highlights, focus */
+  --accent-ink: #5fe0c8; /* accent used as text */
+  --accent-2: #2dd4bf;   /* alt accent, charts only */
+  --accent-fill: #3f8f80;      /* primary button fill (with --on-accent-fill text) */
+  --accent-fill-hover: #4aa392;
+  --on-accent-fill: #05080d;   /* dark text on teal fill: 5.2:1. White on #3f8f80 is 3.85:1 and FAILS AA */
+  --accent-wash: rgba(95, 224, 200, 0.10);
+  --accent-border: rgba(95, 224, 200, 0.45);
+  --warn: #e0b45f;
+  --danger: #f28b82;
+  --focus: #5fe0c8;
+  /* Forecast map/text. Text colors are AA on --bg. Fills take white labels. */
+  --lean-r: #ffb4ab;
+  --lean-d: #b4c7ff;
+  --lean-toss: #e0b45f;
+  --lean-r-fill: #8f3d3a;
+  --lean-d-fill: #2c4f8a;
+  --lean-toss-fill: #6d5a2e;
+  --lean-pending-fill: #24303c;
+  --lean-none-fill: #1a222b;
+  --lean-r-wash: #3a2426;
+  --lean-d-wash: #1c2838;
+  --lean-toss-wash: #2c281c;
+  /* Forecast party colors. Spec hues are --party-r/d/toss.
+     Inks are lifted just enough for 4.5:1 on #0e141b.
+     Fills under white 14px labels are the spec hue, or one step
+     darker where white on the spec hue was 4.48:1 (Republican)
+     or 4.24:1 (toss-up). No-race labels use #8a96a3 because
+     #5d6875 on #151b22 is 3.06:1. */
+  --party-r: #c0564f;
+  --party-r-fill: #bf564f;
+  --party-r-ink: #c45f59;
+  --party-d: #4a6fb5;
+  --party-d-fill: #4a6fb5;
+  --party-d-ink: #5c7dbc;
+  --party-toss: #8a7a45;
+  --party-toss-fill: #857542;
+  --party-toss-ink: #8c7d48;
+  --party-none: #151b22;
+  --party-none-label: #8a96a3;
+  --party-pending: #1f2730;
+  --party-pending-border: #2a333d;
+  --party-mid: #5d6875;
+  --forecast-bg: #0b0e12;
+  --forecast-text: #c9d2dc;
+  --forecast-muted: #8a96a3;
+  --forecast-border: #1d2630;
+  --race-rule: #1a2129;
+  /* Model identity dots. Bright on #0e141b, no grey. DeepSeek is yellow. */
+  --model-deepseek: #ffe14a;
+  --model-fable: #ff7a1a;
+  --model-opus: #f6233a;
+  --model-sol: #ff5a8a;
+  --model-kimi: #ff4ad0;
+  --model-grok: #e040a0;
+  --model-qwen: #8a5cff;
+  --model-astra: #2f78ff;
+  --model-luna: #2ed0ff;
+  --model-argon: #1ec8a5;
+  --model-mistral: #3dde6a;
+  --model-llama: #c6e03a;
+  --model-sonar: #ffb020;
+  --model-flash: #7a4dff;
+  --model-fallback: #ff4d4d;
+}
+
+/* ===================== Lineage (light, warm) ===================== */
+[data-theme="lineage"] {
+  color-scheme: light;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Newsreader", Georgia, serif;  /* h1/h2 only */
+  --bg: #f7f3ec;
+  --surface: #fffdf9;
+  --surface-2: #efe8dc;
+  --border: #e3d6c8;
+  --border-soft: #efe8dc;
+  --text: #1c1a17;
+  --text-2: #2f2b26;
+  --text-3: #4a453e;
+  --text-4: #5c564c;     /* lowest allowed for text */
+  --accent: #c4744f;     /* fills, rules, icons. NOT body text (3.3:1) */
+  --accent-ink: #a4522f; /* accent used as text/links: 5.4:1 on --surface */
+  --accent-fill: #a4522f;      /* white text 5.5:1. #b9694a with white is 4.05:1 and fails at 16px */
+  --accent-fill-hover: #8f4426;
+  --accent-soft: #b9694a;      /* non-text accent: rules, icons, hover borders */
+  --on-accent-fill: #ffffff;
+  --accent-wash: #f8ebe3;
+  --accent-border: #cbbba6;
+  --warn: #926116;
+  --danger: #b3261e;
+  --focus: #a4522f;
+}
+
+/* ===================== Shared base ===================== */
+html { background: var(--bg); color: var(--text-2); font-family: var(--font-sans); font-size: 100%; -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-size: var(--fs-0); line-height: var(--lh-body); overflow-x: clip; }
+h1, h2, h3 { color: var(--text); line-height: var(--lh-tight); font-weight: var(--fw-bold); text-wrap: balance; margin: 0; }
+[data-theme="lineage"] h1, [data-theme="lineage"] h2 { font-family: var(--font-display); font-weight: var(--fw-semibold); }
+h1 { font-size: var(--fs-5); letter-spacing: -0.02em; }
+h2 { font-size: var(--fs-3); }
+@media (min-width: 768px) { h2 { font-size: var(--fs-4); } }
+h3 { font-size: var(--fs-2); }
+p { max-width: var(--measure); text-wrap: pretty; }
+a { color: var(--accent-ink, var(--accent)); }
+:focus-visible { outline: var(--focus-w) solid var(--focus); outline-offset: 2px; }
+img, svg, video { max-width: 100%; height: auto; }
+[data-allow-small-text] { font-size: var(--fs-fine); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+.wrap { width: 100%; max-width: var(--content-max); margin-inline: auto; padding-inline: var(--gutter); box-sizing: border-box; }
+.section { padding-block: var(--section-y); }
+
+/* ---- One button style. Two variants. ---- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); min-height: var(--tap); padding: 0 var(--sp-5); border-radius: var(--r-md); border: var(--border-w) solid transparent; font: var(--fw-semibold) var(--fs-0)/1 var(--font-sans); text-decoration: none; cursor: pointer; transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.btn-primary { background: var(--accent-fill); color: var(--on-accent-fill); }
+.btn-primary:hover { background: var(--accent-fill-hover); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-secondary:hover { border-color: var(--accent-border); }
+
+/* ---- Card: flat surface, 1px border, no glow, no gradient ---- */
+.card { background: var(--surface); border: var(--border-w) solid var(--border); border-radius: var(--r-md); padding: var(--sp-5); }
+
+/* ===================== Shared header ===================== */
+/* Order, left to right: [logo + product name] [primary links…] (spacer) [Back to Verafy.ai] [menu button, mobile only] [credits badge]
+   The credits badge is ALWAYS the last child and flush with the content edge. */
+.site-header { position: sticky; top: 0; z-index: var(--z-header); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: var(--border-w) solid var(--border-soft); }
+.site-header__inner { display: flex; align-items: center; gap: var(--sp-4); height: var(--header-h); max-width: var(--content-max); margin-inline: auto; padding-inline: var(--gutter); box-sizing: border-box; }
+.site-header__brand { overflow: hidden; display: flex; align-items: center; min-height: var(--tap); gap: var(--sp-3); text-decoration: none; color: var(--text); min-width: 0; }
+.site-header__brand img, .site-header__brand svg { height: var(--logo-h); width: auto; display: block; flex: none; }
+.site-header__mark { height: 28px !important; }  /* product icon (the supplied 4 logos / Verafy V) */
+.site-header__product { font-size: var(--fs-0); font-weight: var(--fw-semibold); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.site-header__nav { display: flex; gap: var(--sp-5); }
+.site-header__nav a { color: var(--text-3); text-decoration: none; font-size: var(--fs-0); min-height: var(--tap); display: inline-flex; align-items: center; }
+.site-header__nav a[aria-current="page"], .site-header__nav a:hover { color: var(--text); }
+.site-header__spacer { flex: 1; }
+.site-header__back { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 var(--sp-4); border-radius: var(--r-md); border: var(--border-w) solid var(--border); color: var(--text); text-decoration: none; font-weight: var(--fw-semibold); white-space: nowrap; }
+.site-header__back:hover { border-color: var(--accent-border); }
+.site-header__menu { display: none; min-width: var(--tap); min-height: var(--tap); border-radius: var(--r-md); border: var(--border-w) solid var(--border); background: transparent; color: var(--text); }
+
+/* Merged credits badge: one pill, two halves. Left = balance (label, not a link). Right = Buy more (button). */
+.credits-badge { display: inline-flex; align-items: stretch; height: var(--tap); border: var(--border-w) solid var(--accent-border); border-radius: var(--r-pill); overflow: hidden; flex: none; font-size: var(--fs-0); }
+.credits-badge__balance { display: inline-flex; align-items: center; gap: 0; padding: 0 var(--sp-4); color: var(--text); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.credits-badge__balance strong { font-weight: var(--fw-bold); }
+.credits-badge__buy { display: inline-flex; align-items: center; padding: 0 var(--sp-4); border: 0; border-left: var(--border-w) solid var(--accent-border); background: var(--accent-fill); color: var(--on-accent-fill); font: var(--fw-semibold) var(--fs-0)/1 var(--font-sans); cursor: pointer; white-space: nowrap; }
+.credits-badge__buy:hover { background: var(--accent-fill-hover); }
+
+@media (max-width: 767px) {
+  .site-header__inner { height: var(--header-h-mobile); gap: var(--sp-2); }
+  .site-header__brand img, .site-header__brand svg { height: var(--logo-h-mobile); }
+  .site-header .site-header__nav, .site-header .site-header__back, .site-header .site-header__wordmark { display: none; }   /* nav + back move into the menu; wordmark drops, icon + product name stay */
+  .site-header__menu { display: inline-flex; align-items: center; justify-content: center; }
+  .credits-badge .credits-badge__free, .credits-badge .credits-badge__word { display: none; } /* "1,000 free credits | Buy more" -> "1,000 credits | Buy" */
+  .credits-badge__balance, .credits-badge__buy { padding: 0 var(--sp-3); }
+}
+@media (max-width: 419px) { .site-header .site-header__mark { display: none; } }      /* product name beats the icon on small phones */
+@media (max-width: 339px) { .site-header .site-header__product { display: none; } .site-header .site-header__mark { display: block; } }
+
+

@@ -1,0 +1,62 @@
+/*
+ * Shared Verafy hero backdrop. The art is cover/slice (same as the SVG
+ * preserveAspectRatio xMidYMid slice). Its bottom edge fades out with a mask,
+ * and an overlay ends on the page background so there is no line in either theme.
+ * Parent must be position: relative and set --background to the page fill.
+ * design-check-disable-file gradient -- the fade is the required hero mask and scrim, not a filled surface
+ */
+
+.product-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.product-hero-backdrop__art {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 220px), transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 220px), transparent 100%);
+}
+
+.product-hero-backdrop__art picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-hero-backdrop__art img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(100% - 240px),
+      var(--background, var(--bg)) 100%
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--background, var(--bg)) 42%, transparent) 0%,
+      color-mix(in srgb, var(--background, var(--bg)) 28%, transparent) 46%,
+      transparent 76%
+    );
+}
+
+

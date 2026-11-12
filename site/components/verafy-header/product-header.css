@@ -1,0 +1,53 @@
+/*
+ * Frame for the canonical <verafy-header> (www.verafy.ai/header/v1).
+ * The component draws the bar, menu, credits and checkout in its own shadow DOM.
+ * This file only pins it to the top and reserves its height before the script loads,
+ * so pages do not jump.
+ */
+
+:root {
+  --hdr-height: 64px;
+  --hdr-height-mobile: 56px;
+  --hdr-bg: #0b0e12;
+}
+
+.product-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  height: var(--hdr-height);
+  background: var(--hdr-bg);
+}
+
+.product-header verafy-header {
+  display: block;
+  min-height: var(--hdr-height);
+}
+
+.bias-sim-banner {
+  top: var(--hdr-height);
+}
+
+.bias-shell-main {
+  padding-top: calc(var(--hdr-height) + 52px);
+}
+
+@media (max-width: 639px) {
+  .product-header,
+  .product-header verafy-header {
+    height: var(--hdr-height-mobile);
+    min-height: var(--hdr-height-mobile);
+  }
+
+  .bias-sim-banner {
+    top: var(--hdr-height-mobile);
+  }
+
+  .bias-shell-main {
+    padding-top: calc(var(--hdr-height-mobile) + 52px);
+  }
+}
+
+

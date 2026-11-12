@@ -1,0 +1,133 @@
+/*
+ * Verafy hero art. The illustration is a transparent PNG with black baked
+ * into the pixels, so it sits on a dark panel in both themes. The panel and
+ * the image share one mask, and an overlay washes the lower edge to
+ * var(--background), so the bottom meets the page with no seam.
+ */
+
+.product-hero-page {
+  overflow-x: clip;
+}
+
+/* Swarm art is sized to the title and the ask card. The mask ends at the
+   bottom of that cluster, so results sit on the page background. */
+.ask-hero-cluster {
+  position: relative;
+  isolation: isolate;
+}
+
+.product-hero-page .ask-hero-cluster > .product-hero-backdrop {
+  /* Cover the container's 4px top padding so the art meets the header. */
+  top: -8px;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.product-hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.product-hero--band {
+  min-height: clamp(460px, 68vh, 760px);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 28px;
+  padding-bottom: 80px;
+}
+
+.product-hero-page .ask-hero-cluster > .product-hero-backdrop,
+.product-hero--band .product-hero-backdrop {
+  /* Dark panel behind the transparent PNG, faded with the art. */
+  background: #0b0e12;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 58%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 58%,
+    transparent 100%
+  );
+}
+
+.product-hero--band .product-hero-backdrop {
+  /* Pull up under the simulated-results banner so no page strip shows. */
+  top: -20px;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  height: auto;
+  transform: translateX(-50%);
+}
+
+.product-hero-page .ask-hero-cluster > .product-hero-backdrop .product-hero-backdrop__art,
+.product-hero--band .product-hero-backdrop .product-hero-backdrop__art {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.product-hero-page h1.ask-hero-title {
+  color: #ffffff;
+  width: fit-content;
+  margin-inline: auto;
+  padding: 8px 16px;
+  border-radius: 14px;
+  background: color-mix(in srgb, #0b0e12 92%, transparent);
+}
+
+.product-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+  color: #ffffff;
+  border-radius: 14px;
+  padding: 20px 22px 48px;
+}
+
+.product-hero__content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 14px;
+  background: color-mix(in srgb, #0b0e12 92%, transparent);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 86%,
+    transparent 100%
+  );
+}
+
+.product-hero__content h1 {
+  color: #ffffff;
+}
+
+.product-hero__kicker {
+  color: #5fe0c8;
+}
+
+.product-hero__lede {
+  color: #dfe5eb;
+}
+
+.product-hero__content a.product-hero__button {
+  color: #ffffff;
+  border-color: #dfe5eb;
+}
+
+
