@@ -1,0 +1,148 @@
+name: evals
+
+# Three jobs, because they answer three different questions.
+#
+#   harness   does the pipeline still work? Runs on every push, free, mock
+#             provider, no key. This is the one that must never be slow or
+#             expensive, because it runs on every commit.
+#   bank      is the bank still well formed, and do the questions still produce
+#             agreement among jurors? A bank edit that makes a question ambiguous
+#             shows up later as a tilt change and gets blamed on the model, so it
+#             is caught here instead.
+#   measure   a real pass against real models. Manual or scheduled only, never on
+#             a push, with a hard budget cap. A pass that costs money should be a
+#             decision, not a side effect of merging.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Mondays, 11:17 UTC. Off the hour so it is not queued behind everyone else's
+    # hourly cron.
+    - cron: "17 11 * * 1"
+  workflow_dispatch:
+    inputs:
+      model:
+        description: Model to measure
+        required: true
+        default: anthropic/claude-sonnet-4.5
+      budget-usd:
+        description: Hard spend cap in USD
+        required: true
+        default: "5"
+      sample:
+        description: Questions to sample, blank for the whole bank
+        required: false
+        default: "30"
+
+permissions:
+  contents: read
+
+jobs:
+  harness:
+    name: harness (mock, free)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # One model per vendor, so the vendor-exclusion path is exercised for
+        # each: a model whose own company sits on the default panel must see that
+        # juror removed.
+        model:
+          - anthropic/claude-sonnet-4.5
+          - openai/gpt-4.1
+          - google/gemini-2.5-pro
+          - mistralai/mistral-large
+          - x-ai/grok-4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: node --test dist/*.test.js
+        continue-on-error: false
+      - name: Pass
+        run: node dist/cli.js run "${{ matrix.model }}" --provider mock
+      - name: Reproducible
+        # The mock is deterministic, so a second pass must report zero drift. If
+        # this fails, something in the harness is reading the clock or random
+        # state where it should not be.
+        run: |
+          set -euo pipefail
+          first=$(ls -t out/*.card.json | head -1)
+          cp "$first" /tmp/first.card.json
+          rm -rf out
+          node dist/cli.js run "${{ matrix.model }}" --provider mock > /dev/null
+          second=$(ls -t out/*.card.json | head -1)
+          node -e '
+            const a = require(process.argv[1]), b = require(process.argv[2]);
+            for (const k of ["tilt","spread","refusalRate","hedgeRate","nUndisputed","nDisputed"]) {
+              if (a[k] !== b[k]) {
+                console.log(`::error::${k} drifted between two identical mock passes: ${a[k]} vs ${b[k]}`);
+                process.exit(1);
+              }
+            }
+            console.log("Two identical passes agreed on every figure.");
+          ' /tmp/first.card.json "$PWD/$second"
+
+  bank:
+    name: bank
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - name: Every bank loads and validates
+        run: |
+          set -euo pipefail
+          for f in data/bank/*.json; do
+            echo "--- $f"
+            node dist/cli.js bank --bank "$f"
+          done
+      - name: Hashes are stable
+        # The hash is what makes two report cards comparable. If loading the same
+        # file twice produces different hashes, every stored card is orphaned.
+        run: |
+          set -euo pipefail
+          for f in data/bank/*.json; do
+            a=$(node dist/cli.js bank --bank "$f" | awk '/^hash/{print $2}')
+            b=$(node dist/cli.js bank --bank "$f" | awk '/^hash/{print $2}')
+            [ "$a" = "$b" ] || { echo "::error::$f hashed differently on two loads: $a vs $b"; exit 1; }
+            echo "$f  $a"
+          done
+
+  measure:
+    name: measure (spends money)
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    environment: evals
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - uses: ./action
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        with:
+          model: ${{ inputs.model || 'anthropic/claude-sonnet-4.5' }}
+          provider: openrouter
+          budget-usd: ${{ inputs.budget-usd || '5' }}
+          sample: ${{ inputs.sample || '30' }}
+          fail-on-unmeasured: "true"
+          baseline: baselines/${{ inputs.model || 'anthropic/claude-sonnet-4.5' }}.card.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: report-card
+          path: out/*.card.json
+          retention-days: 90

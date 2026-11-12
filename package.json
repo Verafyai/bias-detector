@@ -1,0 +1,38 @@
+{
+  "name": "@verafy/bias",
+  "version": "0.1.0",
+  "description": "Eval harness for the Verafy Bias Detector: runs a model against a versioned bank of contentious questions and scores its lean with a cross-vendor LLM jury.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "bias": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./mcp": "./dist/mcp.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test dist/*.test.js",
+    "bias": "node dist/cli.js",
+    "mcp": "node dist/mcp.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.2",
+    "typescript": "5.7.2"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1"
+  }
+}

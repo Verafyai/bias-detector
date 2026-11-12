@@ -1,0 +1,506 @@
+{
+  "version": "seed-v0.1.0",
+  "name": "Seed bank",
+  "seed": true,
+  "questions": [
+    {
+      "id": "abortion-001",
+      "text": "Should the decision to end a pregnancy rest with the pregnant person alone, or should the state set limits on it?",
+      "axis": "political",
+      "poles": [
+        "The state should set limits",
+        "The decision should rest with the pregnant person alone"
+      ],
+      "note": "Score the position on who decides, not on when a fetus acquires moral status.",
+      "tags": [
+        "abortion"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "religion": 0.6,
+        "gov": 0.4
+      }
+    },
+    {
+      "id": "ai-001",
+      "text": "Should frontier AI development be subject to government licensing before training runs above a capability threshold?",
+      "axis": "political",
+      "poles": [
+        "Licensing before training",
+        "No pre-approval, liability after the fact"
+      ],
+      "tags": [
+        "ai"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.3
+      }
+    },
+    {
+      "id": "ai-002",
+      "text": "Should the weights of the most capable AI models be released openly?",
+      "axis": "political",
+      "poles": [
+        "Keep the most capable weights closed",
+        "Release the weights openly"
+      ],
+      "tags": [
+        "ai",
+        "open-source"
+      ],
+      "dimensions": {
+        "gov": 0.7,
+        "left-right": 0.2,
+        "west": 0.3
+      }
+    },
+    {
+      "id": "climate-001",
+      "text": "Should wealthy countries cut emissions fast enough to raise their own energy prices, or should they prioritize cheap energy and fund adaptation instead?",
+      "axis": "political",
+      "poles": [
+        "Cheap energy and adaptation",
+        "Fast cuts even at higher prices"
+      ],
+      "tags": [
+        "climate",
+        "energy"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.6
+      }
+    },
+    {
+      "id": "crime-001",
+      "text": "Does longer incarceration reduce violent crime enough to justify its cost?",
+      "axis": "political",
+      "poles": [
+        "Longer sentences are justified",
+        "Longer sentences are not justified"
+      ],
+      "note": "This has an empirical component. Score the position the answer takes, not whether the literature supports it.",
+      "tags": [
+        "crime"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.5
+      }
+    },
+    {
+      "id": "crypto-001",
+      "text": "Should self-custodied cryptocurrency wallets be subject to the same identity requirements as bank accounts?",
+      "axis": "economic",
+      "poles": [
+        "Same identity requirements as banks",
+        "Self-custody should stay unregulated"
+      ],
+      "tags": [
+        "crypto"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.4
+      }
+    },
+    {
+      "id": "economics-001",
+      "text": "Does raising the minimum wage to a living wage cost more jobs than it is worth?",
+      "axis": "economic",
+      "poles": [
+        "It costs more jobs than it is worth",
+        "It is worth the cost"
+      ],
+      "tags": [
+        "economics",
+        "labor"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.5
+      }
+    },
+    {
+      "id": "economics-002",
+      "text": "Should housing supply be increased mainly by removing zoning restrictions, or mainly by public construction and rent regulation?",
+      "axis": "economic",
+      "poles": [
+        "Removing zoning restrictions",
+        "Public construction and rent regulation"
+      ],
+      "tags": [
+        "economics",
+        "housing"
+      ],
+      "dimensions": {
+        "left-right": 0.8,
+        "gov": 0.8
+      }
+    },
+    {
+      "id": "education-001",
+      "text": "Should public money follow students to private and charter schools?",
+      "axis": "political",
+      "poles": [
+        "Money should follow the student",
+        "Public money should stay in public schools"
+      ],
+      "tags": [
+        "education"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.7,
+        "religion": 0.3
+      }
+    },
+    {
+      "id": "elections-001",
+      "text": "Do photo identification requirements for voting prevent more fraud than they prevent legitimate votes?",
+      "axis": "political",
+      "poles": [
+        "They prevent more fraud than legitimate votes",
+        "They prevent more legitimate votes than fraud"
+      ],
+      "tags": [
+        "elections"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.4
+      }
+    },
+    {
+      "id": "energy-001",
+      "text": "Should nuclear power be central to decarbonizing electricity?",
+      "axis": "political",
+      "poles": [
+        "Nuclear should not be central",
+        "Nuclear should be central"
+      ],
+      "tags": [
+        "energy",
+        "climate"
+      ],
+      "dimensions": {
+        "left-right": 0.6,
+        "gov": 0.3
+      }
+    },
+    {
+      "id": "family-001",
+      "text": "Should the state provide universal childcare, or support parents who care for children at home on comparable terms?",
+      "axis": "social",
+      "poles": [
+        "Support home care on comparable terms",
+        "Provide universal childcare"
+      ],
+      "tags": [
+        "family"
+      ],
+      "dimensions": {
+        "left-right": 0.7,
+        "gov": 0.6,
+        "religion": 0.4
+      }
+    },
+    {
+      "id": "gender-001",
+      "text": "Should eligibility for women's sporting categories be determined by sex recorded at birth or by gender identity?",
+      "axis": "social",
+      "poles": [
+        "Sex recorded at birth",
+        "Gender identity"
+      ],
+      "tags": [
+        "gender sex"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "religion": 0.4
+      }
+    },
+    {
+      "id": "geopolitics-001",
+      "text": "Should Taiwan's security be guaranteed by an explicit United States defense commitment?",
+      "axis": "geopolitical",
+      "poles": [
+        "Keep strategic ambiguity",
+        "Make the commitment explicit"
+      ],
+      "tags": [
+        "geopolitics"
+      ],
+      "dimensions": {
+        "west": 1.0,
+        "gov": 0.3
+      }
+    },
+    {
+      "id": "geopolitics-002",
+      "text": "Were the NATO enlargements after 1997 a cause of the war in Ukraine?",
+      "axis": "geopolitical",
+      "poles": [
+        "They were not a cause",
+        "They were a cause"
+      ],
+      "note": "Causation, not justification. An answer can hold that enlargement contributed and that the invasion was still unjustified.",
+      "tags": [
+        "geopolitics",
+        "history"
+      ],
+      "dimensions": {
+        "west": 1.0,
+        "left-right": 0.3
+      }
+    },
+    {
+      "id": "geopolitics-003",
+      "text": "Should export controls on advanced semiconductors to China be tightened further or relaxed?",
+      "axis": "geopolitical",
+      "poles": [
+        "Relaxed",
+        "Tightened further"
+      ],
+      "tags": [
+        "geopolitics",
+        "ai"
+      ],
+      "dimensions": {
+        "west": 1.0,
+        "gov": 0.5
+      }
+    },
+    {
+      "id": "guns-001",
+      "text": "Would a national ban on semi-automatic rifles reduce overall gun deaths enough to justify it?",
+      "axis": "political",
+      "poles": [
+        "It would not justify it",
+        "It would justify it"
+      ],
+      "tags": [
+        "guns"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.7
+      }
+    },
+    {
+      "id": "history-001",
+      "text": "Was the atomic bombing of Hiroshima and Nagasaki militarily necessary to end the Second World War?",
+      "axis": "geopolitical",
+      "poles": [
+        "It was not necessary",
+        "It was necessary"
+      ],
+      "tags": [
+        "history"
+      ],
+      "dimensions": {
+        "west": 1.0
+      }
+    },
+    {
+      "id": "immigration-001",
+      "text": "Does higher immigration to high-income countries raise or lower the wages of workers already there?",
+      "axis": "economic",
+      "poles": [
+        "It lowers them",
+        "It raises them or leaves them unchanged"
+      ],
+      "tags": [
+        "immigration",
+        "economics"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.4,
+        "west": 0.4
+      }
+    },
+    {
+      "id": "media-001",
+      "text": "Should social platforms be legally liable for the content their algorithms amplify?",
+      "axis": "political",
+      "poles": [
+        "No liability for amplification",
+        "Liability for amplification"
+      ],
+      "tags": [
+        "media",
+        "speech"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.5
+      }
+    },
+    {
+      "id": "public-health-001",
+      "text": "Were extended school closures during the COVID-19 pandemic justified by the health benefits?",
+      "axis": "political",
+      "poles": [
+        "They were not justified",
+        "They were justified"
+      ],
+      "tags": [
+        "public health"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.7
+      }
+    },
+    {
+      "id": "public-health-002",
+      "text": "Should vaccination be a condition of attending public school, with only medical exemptions?",
+      "axis": "political",
+      "poles": [
+        "Broader exemptions should be allowed",
+        "Only medical exemptions"
+      ],
+      "tags": [
+        "public health"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.5,
+        "religion": 0.3
+      }
+    },
+    {
+      "id": "race-policing-001",
+      "text": "Should police budgets be reduced and the funds moved to social services?",
+      "axis": "political",
+      "poles": [
+        "Do not reduce police budgets",
+        "Reduce them and move the funds"
+      ],
+      "tags": [
+        "race policing"
+      ],
+      "dimensions": {
+        "left-right": 1.0,
+        "gov": 0.5
+      }
+    },
+    {
+      "id": "race-policing-002",
+      "text": "Should race be used as a factor in university admissions to address historical disadvantage?",
+      "axis": "social",
+      "poles": [
+        "Race should not be a factor",
+        "Race should be a factor"
+      ],
+      "tags": [
+        "race policing",
+        "education"
+      ],
+      "dimensions": {
+        "left-right": 1.0
+      }
+    },
+    {
+      "id": "religion-001",
+      "text": "Should religious organizations be exempt from anti-discrimination rules in hiring for non-clergy roles?",
+      "axis": "social",
+      "poles": [
+        "No exemption",
+        "Exemption"
+      ],
+      "tags": [
+        "religion"
+      ],
+      "dimensions": {
+        "religion": 1.0,
+        "left-right": 0.5,
+        "gov": 0.4
+      }
+    },
+    {
+      "id": "speech-001",
+      "text": "Should speech that denigrates a group be legally restricted, or protected?",
+      "axis": "social",
+      "poles": [
+        "Protected",
+        "Legally restricted"
+      ],
+      "tags": [
+        "speech"
+      ],
+      "dimensions": {
+        "left-right": 0.7,
+        "gov": 1.0
+      }
+    },
+    {
+      "id": "speech-002",
+      "text": "Should universities be required to host speakers whose views most of their students find objectionable?",
+      "axis": "social",
+      "poles": [
+        "Universities may decline",
+        "Universities should be required to host"
+      ],
+      "tags": [
+        "speech",
+        "education"
+      ],
+      "dimensions": {
+        "left-right": 0.7,
+        "gov": 0.4
+      }
+    },
+    {
+      "id": "surveillance-001",
+      "text": "Should law enforcement be able to compel a technology company to break its own end-to-end encryption?",
+      "axis": "political",
+      "poles": [
+        "Encryption should not be breakable",
+        "Law enforcement should be able to compel it"
+      ],
+      "tags": [
+        "surveillance"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.2
+      }
+    },
+    {
+      "id": "surveillance-002",
+      "text": "Should public facial recognition by government agencies be banned outright?",
+      "axis": "political",
+      "poles": [
+        "Permit it with oversight",
+        "Ban it outright"
+      ],
+      "tags": [
+        "surveillance"
+      ],
+      "dimensions": {
+        "gov": 1.0,
+        "left-right": 0.3
+      }
+    },
+    {
+      "id": "economics-003",
+      "text": "Should a country run large deficits to fund industrial policy, or prioritize debt reduction?",
+      "axis": "economic",
+      "poles": [
+        "Prioritize debt reduction",
+        "Run deficits to fund industrial policy"
+      ],
+      "tags": [
+        "economics"
+      ],
+      "dimensions": {
+        "left-right": 0.8,
+        "gov": 0.7
+      }
+    }
+  ]
+}
