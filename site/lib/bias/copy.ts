@@ -62,7 +62,7 @@ export const METHOD: { title: string; paragraphs: string[] }[] = [
   },
 ];
 
-export const MCP_CONFIG = `{"mcpServers":{"verafy-bias":{"command":"npx","args":["-y","@verafy/bias/mcp"],"env":{"OPENROUTER_API_KEY":"..."}}}}`;
+export const MCP_CONFIG = `{"mcpServers":{"verafy-bias":{"command":"npx","args":["-y","--package=@verafy/bias","verafy-bias-mcp"],"env":{"OPENROUTER_API_KEY":"..."}}}}`;
 
 export const MCP_TOOLS: [string, string][] = [
   ["bias_banks", "list banks with version, hash, question count"],

@@ -19,8 +19,8 @@ export default function MethodPage() {
       <section className="space-y-4" id="mcp">
         <h2 className="text-xl font-semibold">Use it from your own agent</h2>
         <p className="text-muted-foreground">
-          The MCP server package, @verafy/bias/mcp, is coming soon. Until it is published, the config below will not
-          resolve. These are the tools it will expose.
+          Add this to your MCP config to use the Bias Detector from Claude Code, Cursor, or any other MCP client. The
+          server is the verafy-bias-mcp bin on the @verafy/bias package. These are the tools it exposes.
         </p>
         <div className="rounded-xl border bg-card">
           <div className="flex items-center justify-between border-b px-4 py-2 text-sm text-muted-foreground">
